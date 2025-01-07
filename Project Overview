@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Delivery Portal</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f8fa;
+            color: #333;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 36px;
+            font-weight: 700;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #333;
+            padding: 12px 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            margin: 0 15px;
+            font-size: 16px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: #575757;
+        }
+
+        section {
+            padding: 40px 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #333;
+            color: white;
+            margin-top: 40px;
+            font-size: 14px;
+            position: relative;
+            z-index: 1;
+        }
+
+        footer a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Floating Food and Delivery Items */
+        .floating-food {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            z-index: 0;
+            animation: float 12s ease-in-out infinite;
+        }
+
+        /* Food and Delivery Images */
+        .floating-food:nth-child(1) { background-image: url('https://cdn-icons-png.flaticon.com/512/1046/1046784.png'); top: 5%; left: 10%; animation-delay: 0s; }  /* Pizza */
+        .floating-food:nth-child(2) { background-image: url('https://cdn-icons-png.flaticon.com/512/3075/3075977.png'); top: 15%; left: 50%; animation-delay: 1s; } /* Burger */
+        .floating-food:nth-child(3) { background-image: url('https://cdn-icons-png.flaticon.com/512/135/135660.png'); top: 25%; left: 80%; animation-delay: 2s; } /* Drink */
+        .floating-food:nth-child(4) { background-image: url('https://cdn-icons-png.flaticon.com/512/1468/1468784.png'); top: 40%; left: 20%; animation-delay: 3s; } /* Fries */
+        .floating-food:nth-child(5) { background-image: url('https://cdn-icons-png.flaticon.com/512/2830/2830305.png'); top: 60%; left: 70%; animation-delay: 4s; } /* Taco */
+        .floating-food:nth-child(6) { background-image: url('https://cdn-icons-png.flaticon.com/512/888/888954.png'); top: 70%; left: 30%; animation-delay: 5s; } /* Donut */
+        .floating-food:nth-child(7) { background-image: url('https://cdn-icons-png.flaticon.com/512/3480/3480430.png'); top: 85%; left: 10%; animation-delay: 6s; } /* Cupcake */
+        .floating-food:nth-child(8) { background-image: url('https://cdn-icons-png.flaticon.com/512/1995/1995535.png'); top: 10%; left: 75%; animation-delay: 7s; } /* Noodles */
+        .floating-food:nth-child(9) { background-image: url('https://cdn-icons-png.flaticon.com/512/3344/3344036.png'); top: 20%; left: 35%; animation-delay: 1.5s; } /* Delivery Box */
+        .floating-food:nth-child(10) { background-image: url('https://cdn-icons-png.flaticon.com/512/4825/4825071.png'); top: 30%; left: 90%; animation-delay: 3.5s; } /* Grocery Bag */
+        .floating-food:nth-child(11) { background-image: url('https://cdn-icons-png.flaticon.com/512/1721/1721933.png'); top: 65%; left: 55%; animation-delay: 4.5s; } /* Sandwich */
+        .floating-food:nth-child(12) { background-image: url('https://cdn-icons-png.flaticon.com/512/2741/2741266.png'); top: 35%; left: 15%; animation-delay: 2.5s; } /* Delivery Bike */
+        .floating-food:nth-child(13) { background-image: url('https://cdn-icons-png.flaticon.com/512/1046/1046790.png'); top: 45%; left: 40%; animation-delay: 5.5s; } /* Sushi */
+        .floating-food:nth-child(14) { background-image: url('https://cdn-icons-png.flaticon.com/512/3178/3178150.png'); top: 75%; left: 70%; animation-delay: 6.5s; } /* Salad */
+
+        @keyframes float {
+            0% { transform: translateY(0) translateX(0); opacity: 0.8; }
+            50% { transform: translateY(-20px) translateX(20px); opacity: 1; }
+            100% { transform: translateY(0) translateX(0); opacity: 0.8; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Food Delivery Management Portal</h1>
+    </header>
+
+    <nav>
+        <a href="#register">Register</a>
+        <a href="#food-list">Food List</a>
+        <a href="#delivery">Delivery Management</a>
+        <a href="#feedback">Feedback</a>
+    </nav>
+
+    <!-- Floating Food Items -->
+    <div class="floating-food"></div>
+    <div class="floating-food"></div>
+    <div class="floating-food"></div>
+    <div class="floating-food"></div>
+    <div class="floating-food"></div>
+    <div class="floating-food"></div>
+    <div class="floating-food"></div>
+    <div class="floating-food"></div>
+    <div class="floating-food"></div>
+    <div class="floating-food"></div>
+    <div class="floating-food"></div>
+    <div class="floating-food"></div>
+    <div class="floating-food"></div>
+    <div class="floating-food"></div>
+
+    <section id="register">
+        <div class="container">
+            <h2>Register Hotel/User</h2>
+            <p>Here you can register hotels and users to start using the food delivery system.</p>
+        </div>
+    </section>
+
+    <section id="food-list">
+        <div class="container">
+            <h2>Food Varieties</h2>
+            <ul>
+                <li>Veg Options</li>
+                <li>Non-Veg Options</li>
+                <li>Custom Meals</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="delivery">
+        <div class="container">
+            <h2>Efficient Delivery Management</h2>
+            <p>We ensure timely and efficient deliveries with real-time tracking.</p>
+        </div>
+    </section>
+
+    <section id="feedback">
+        <div class="container">
+            <h2>Feedback</h2>
+            <p>We value your feedback to improve our services. Please leave your comments.</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Food Delivery Portal | <a href="#">Privacy Policy</a></p>
+    </footer>
+</body>
+</html>
